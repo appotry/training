@@ -12,7 +12,8 @@ modprobe ubifs
 #ubimkvol /dev/ubi0 -N volume_name -s 64MiB
 mkfs.ubifs -r rootfs -m 2048 -e 129024 -c 812 -o ubifs.img
 ubinize -o ubi.img -m 2048 -p 128KiB -s 512 ubinize.cfg
-dd if=ubi.img of=/dev/mtd0 bs=2048
+#dd if=ubi.img of=/dev/mtd0 bs=2048
+ubiformat /dev/mtd0 -f ubi.img
 ubiattach /dev/ubi_ctrl -m 0
 sudo mount -t ubifs ubi0_0 /mnt
 
